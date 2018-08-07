@@ -1,0 +1,12 @@
+FROM node:7.9.0
+
+WORKDIR /client
+ADD ./client/webpack.config.js /client/webpack.config.js
+ADD ./client/dist /client/dist
+
+RUN \
+  npm init -y && \
+  npm install --save react react-dom && \
+  npm install --save-dev webpack webpack-cli webpack-dev-server babel-loader babel-core babel-preset-react babel-preset-env
+
+CMD /client/node_modules/.bin/webpack-dev-server --hot
